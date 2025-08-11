@@ -1,6 +1,7 @@
 package org.generations.restfuldemodyd.service;
 
 import org.generations.restfuldemodyd.dtos.PlayerDTO;
+import org.generations.restfuldemodyd.errors.ResourceNotFoundException;
 import org.generations.restfuldemodyd.mappers.PlayerMapper;
 import org.generations.restfuldemodyd.model.Player;
 import org.generations.restfuldemodyd.repository.PlayerRepository;
@@ -29,8 +30,7 @@ public class PlayerService {
     }
 
     public PlayerDTO findById(Integer id) {
-        Player player = playerRepository.findById(id).orElse(null);
-        assert player != null;
+        Player player = playerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Player not found"));
         return playerMapper.playerDTO(player);
     }
 
