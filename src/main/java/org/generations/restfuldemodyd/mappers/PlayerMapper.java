@@ -9,7 +9,7 @@ public class PlayerMapper {
 
     //Exponemos al cliente, esto al uso es un objeto construido de tipo characterDTO
     //Es como si tuvieramos un CharacterDTO dto;
-    public PlayerDTO playerDTO(Player player) {
+    public PlayerDTO mapToDTO (Player player) {
         PlayerDTO dto = new PlayerDTO();
         dto.setId(player.getId());
         dto.setName(player.getName());
@@ -18,7 +18,7 @@ public class PlayerMapper {
         return  dto;
     }
 
-    public Player player(PlayerDTO playerDTO) {
+    public Player mapToEntity(PlayerDTO playerDTO) {
         Player player = new Player();
         player.setId(playerDTO.getId());
         player.setName(playerDTO.getName());

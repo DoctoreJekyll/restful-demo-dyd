@@ -25,19 +25,19 @@ public class PlayerService {
     public List<PlayerDTO> findAll() {
         return playerRepository.findAll()
                 .stream()
-                .map(playerMapper::playerDTO)
+                .map(playerMapper::mapToDTO)
                 .collect(Collectors.toList());
     }
 
     public PlayerDTO findById(Integer id) {
         Player player = playerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Player not found"));
-        return playerMapper.playerDTO(player);
+        return playerMapper.mapToDTO(player);
     }
 
     public PlayerDTO save(PlayerDTO playerDTO) {
-        Player player = playerMapper.player(playerDTO);
+        Player player = playerMapper.mapToEntity(playerDTO);
         Player playerSaved = playerRepository.save(player);
-        return  playerMapper.playerDTO(playerSaved);
+        return  playerMapper.mapToDTO(playerSaved);
     }
 
     public void deleteById(Integer id) {
