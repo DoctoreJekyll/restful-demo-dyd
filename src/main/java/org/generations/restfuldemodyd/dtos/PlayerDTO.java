@@ -25,4 +25,6 @@ public class PlayerDTO {
     @Positive(message = "No puede tener un valor negativo")
     @Size(max = 99, message = "No puede tener un nivel mayor a 99")
     private Integer level;
+
+    private Integer jobId;
 }

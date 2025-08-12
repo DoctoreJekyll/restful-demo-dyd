@@ -14,12 +14,15 @@ public class DataLoader {
     @Bean
     public CommandLineRunner initData(PlayerRepository playerRepository, JobRepository jobRepository) {
         return args -> {
-            playerRepository.save(new Player(null, "Tharion", "Elfo", 5));
-            playerRepository.save(new Player(null, "Brug", "Orco", 2));
-            playerRepository.save(new Player(null, "Mira", "Humana", 3));
             jobRepository.save(new Job(null, "Warrior", "Melee Class"));
             jobRepository.save(new Job(null, "Wizard", "Range Class"));
+
+            playerRepository.save(new Player(null, "Tharion", "Elfo", 5, jobRepository.findById(1).get()));
+            playerRepository.save(new Player(null, "Brug", "Orco", 2, jobRepository.findById(2).get()));
+            playerRepository.save(new Player(null, "Mira", "Humana", 3, jobRepository.findById(1).get()));
         };
     }
+
+
 
 }

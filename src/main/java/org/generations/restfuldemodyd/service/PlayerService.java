@@ -5,6 +5,8 @@ import org.generations.restfuldemodyd.errors.ResourceNotFoundException;
 import org.generations.restfuldemodyd.mappers.PlayerMapper;
 import org.generations.restfuldemodyd.model.Player;
 import org.generations.restfuldemodyd.repository.PlayerRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,4 +45,19 @@ public class PlayerService {
     public void deleteById(Integer id) {
         playerRepository.deleteById(id);
     }
+
+    public boolean existById(Integer id) {
+        return playerRepository.findById(id).isPresent();
+    }
+
+    public Page<PlayerDTO> findByJobIgnoreCaseContaining(String job, Pageable pageable) {
+        return playerRepository.findByJobIgnoreCaseContaining(job, pageable)
+                .map(playerMapper::mapToDTO);
+    }
+
+    public Page<PlayerDTO> findByJobId(Integer jobId, Pageable pageable) {
+        return playerRepository.findByJobId(jobId, pageable)
+                .map(playerMapper::mapToDTO);
+    }
+
 }
