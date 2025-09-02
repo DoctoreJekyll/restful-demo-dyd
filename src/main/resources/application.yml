@@ -1,0 +1,11 @@
+server:
+  port: 8081   # le damos un puerto distinto al de Eureka
+
+spring:
+  application:
+    name: restful-demo-dyd   # nombre con el que aparecerá en el dashboard de Eureka
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
